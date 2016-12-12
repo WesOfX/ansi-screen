@@ -1,5 +1,5 @@
 #### How to use it
-Create a `screen<width, height>` and populate it with `character`'s using `at(x, y) = {}`. A `character` has 8 public members which can optionally be initialized with the constructor. The members are`char ch`, `color foreground_color`, `color background_color`, `bool bold`, `bool italics`, `bool underlined`, `bool inverse`, and `bool strikethrough`. The `color` enum includes `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, and `none`. All the classes are in the `ansi` namespace. *Demo code below* - [Screenshot of the output](https://i.sli.mg/K3aGn4.png)
+Create a `screen<width, height>` and populate it with `character`'s using `at(x, y) = {}`. A `character` has 8 public members which can optionally be initialized with the constructor. The members are`char ch`, `color foreground_color`, `color background_color`, `bool bold`, `bool italics`, `bool underlined`, `bool inverse`, and `bool strikethrough`. The `color` enum includes `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, and `none`. All the classes are in the `ansi` namespace. *Demo code below* - [3 screenshots of the output using 3 different terminal color schemes](https://i.sli.mg/jPNeGb.png)
 
 ```
 #include <iostream>
@@ -30,14 +30,14 @@ int main(){
 
 	// Replace the character at (1, 1) with a blue, italics, capital Z
 	my_screen.at(1, 1) = character(
-		'Z', // The character
+		'Z',         // The character
 		color::blue, // The text color
 		color::none, // The background color
-		false, // Bold?
-		true, // Italics?
-		false, // Underlined?
-		false, // Inverted colors?
-		false // Strikethrough?
+		false,       // Bold?
+		true,        // Italics?
+		false,       // Underlined?
+		false,       // Inverted colors?
+		false        // Strikethrough?
 	);
 
 	// Underline the top row
@@ -50,7 +50,10 @@ int main(){
 		my_screen.at(width - 1, i).background_color = color::blue;
 	}
 
+	// Toggle inverted colors for the character at (7, 1)
+	my_screen.at(7, 1).inverse = true;
+
 	// Print the screen!
-	std::cout << my_screen;
+	std::cout << my_screen << std::endl;
 }
 ```
