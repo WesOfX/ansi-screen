@@ -8,10 +8,16 @@ namespace ansi{
 // A streamable 2D character array which supports ansi colors and styles
 template<std::size_t width, std::size_t height>
 class screen{
+	// The type of the internal character array
+	typedef std::array<character, width * height> character_array;
+
 	// The ansi-character array
-	std::array<character, width * height> characters;
+	character_array characters;
 
 public:
+	// Create a screen with an initializer list optionally
+	screen(character_array characters = {}): characters(characters){}
+
 	// Returns a character from a position
 	const character& at(std::size_t x, std::size_t y) const{
 		return characters.at(x + y * width);
@@ -20,6 +26,16 @@ public:
 	// Returns a character from a position
 	character& at(std::size_t x, std::size_t y){
 		return characters.at(x + y * width);
+	}
+
+	// Returns the internal array
+	const character_array& get() const{
+		return characters;
+	}
+
+	// Returns the internal array
+	character_array& get(){
+		return characters;
 	}
 
 	// Downloads the screen from an istream
