@@ -3,64 +3,56 @@ Create a `screen<width, height>` and populate it using `at(x, y) = character()`.
 
 [Screenshot of the output of the following code (Random characters with random colors and styles)](https://i.sli.mg/twpNoU.png)
 ```
-// The screen dimensions
-constexpr size_t width = 80, height = 24;
+#include <iostream>
+#include "color.hpp"
+#include "character.hpp"
+#include "screen.hpp"
 
-// The screen
-ansi::screen<width, height> my_screen;
+int main(){
+	using namespace ansi;
 
-// For every collum of the screen
-for(size_t y = 0; y < height; y++){
+	// The screen dimensions
+	constexpr size_t width = 8, height = 3;
 
-	// For every row of the collum
-	for(size_t x = 0; x < width; x++){
+	// The screen
+	screen<width, height> my_screen(
+		{
+			{
+				{'a'}, {'b'}, {'c'}, {'d'}, {'e'}, {'f'}, {'g'}, {'h'},
+				{'1'}, {'2'}, {'3'}, {'4'}, {'5'}, {'6'}, {'7'}, {'8'},
+				{'g'}, {'r'}, {'a'}, {'p'}, {'h'}, {'i'}, {'c'}, {'s'}
+			}
+		}
+	);
 
-		// RNG for making a random character with random colors and random styles
-		typedef std::uniform_int_distribution<int> distribution;
-		static std::default_random_engine engine(42);
+	// Set the character at (0, 2) to bold with a red background
+	my_screen.at(0, 2).bold = true;
+	my_screen.at(0, 2).background_color = color::red;
 
-		// A random character a-to-z
-		char my_char = 'a' + distribution(0, 25)(engine);
+	// Replace the character at (1, 1) with a blue, italics, capital Z
+	my_screen.at(1, 1) = character(
+		'Z', // The character
+		color::blue, // The text color
+		color::none, // The background color
+		false, // Bold?
+		true, // Italics?
+		false, // Underlined?
+		false, // Inverted colors?
+		false // Strikethrough?
+	);
 
-		// A random foreground color
-		ansi::color my_foreground_color = (ansi::color)distribution((int)ansi::color::none, (int)ansi::color::count)(engine);
-
-		// A random background color
-		ansi::color my_background_color = (ansi::color)distribution((int)ansi::color::none, (int)ansi::color::count)(engine);
-
-		// 50-50 chance of being bold
-		bool is_bold = distribution(false, true)(engine);
-
-		// 50-50 chance of being in italics
-		bool is_italics = distribution(false, true)(engine);
-
-		// 50-50 chance of being underlined
-		bool is_underlined = distribution(false, true)(engine);
-
-		// 50-50 chance of the foreground color and the background color being reversed
-		bool is_inverse = distribution(false, true)(engine);
-
-		// 50-50 chance of having a strikethrough
-		bool has_strikethrough = distribution(false, true)(engine);
-
-		// A random character with random colors and styles
-		ansi::character my_character(
-			my_char,
-			my_foreground_color,
-			my_background_color,
-			is_bold,
-			is_italics,
-			is_underlined,
-			is_inverse,
-			has_strikethrough
-		);
-
-		// Set the character on the screen at (x, y) to the random character
-		my_screen.at(x, y) = my_character;
+	// Underline the top row
+	for(size_t i = 0; i < width; i++){
+		my_screen.at(i, 0).underline = true;
 	}
-}
 
-// Print the screen!
-std::cout << my_screen;
+	// Give the far-right collum a blue background
+	for(size_t i = 0; i < height; i++){
+		my_screen.at(width - 1, i).background_color = color::blue;
+	}
+
+	// Print the screen!
+	std::cout << my_screen;
+}
 ```
 
