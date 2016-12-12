@@ -1,5 +1,5 @@
 #### How to use it
-Create a `screen<width, height>` and populate it with `character`'s using `at(x, y) = {}`. A `character` has 8 public members which can optionally be initialized with the constructor. The members are`char ch`, `color foreground_color`, `color background_color`, `bool bold`, `bool italics`, `bool underlined`, `bool inverse`, `bool strikethrough`. The `color` enum includes `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, and `none`. All the classes are in the `ansi` namespace. *Demo code below* - [Screenshot of the output](https://i.sli.mg/K3aGn4.png)
+Create a `screen<width, height>` and populate it with `character`'s using `at(x, y) = {}`. A `character` has 8 public members which can optionally be initialized with the constructor. The members are`char ch`, `color foreground_color`, `color background_color`, `bool bold`, `bool italics`, `bool underlined`, `bool inverse`, and `bool strikethrough`. The `color` enum includes `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, and `none`. All the classes are in the `ansi` namespace. *Demo code below* - [Screenshot of the output](https://i.sli.mg/K3aGn4.png)
 
 ```
 #include <iostream>
