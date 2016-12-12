@@ -5,6 +5,7 @@
 #include "color.hpp"
 
 namespace ansi{
+// A streamable character which supports ansi color and style
 struct character{
 	character(
 		char ch = ' ',
@@ -28,6 +29,7 @@ struct character{
 
 	// Upload the ansi character to a stream
 	friend std::istream& operator>>(std::istream& is, character& rhs){
+		// TODO
 		return is;
 	}
 

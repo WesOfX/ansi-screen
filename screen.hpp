@@ -11,7 +11,7 @@ class screen{
 	// The type of the internal character array
 	typedef std::array<character, width * height> character_array;
 
-	// The ansi-character array
+	// The character array
 	character_array characters;
 
 public:
@@ -41,7 +41,6 @@ public:
 	// Downloads the screen from an istream
 	friend std::istream& operator>>(std::istream& is, screen<width, height>& rhs){
 		// TODO
-
 		return is;
 	}
 
@@ -51,8 +50,9 @@ public:
 			for(std::size_t x = 0; x < width; x++){
 				os << rhs.at(x, y);
 			}
-			os << "\033[0m\n";
+			if(y < height - 1) os << "\033[0m\n";
 		}
+		os << "\033[0m";
 		return os;
 	}
 };
