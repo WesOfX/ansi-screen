@@ -1,7 +1,6 @@
 #### How to use it
-Create a `screen<width, height>` and populate it using `at(x, y) = character()`. A `character` has 8 public members: The character itself: `char ch`, the text color: `color foreground_color`, the background color: `color background_color`, whether or not it's bold: `bool bold`, whether or not it's in italics: `bool italics`, whether or not it's underlined: `bool underlined`, whether or not the text color and the background color are reversed: `bool inverse`, and whether or not it has a strike through it: `bool strikethrough`. The `color` enum includes `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `none` (default), and `count` if you want to know how many colors there are. All the classes are in the `ansi` namespace and color is in in `ansi::character` namespace.
+Create a `screen<width, height>` and populate it with `character`'s using `at(x, y) = {}`. A `character` has 8 public members which can optionally be initialized with the constructor. The members are`char ch`, `color foreground_color`, `color background_color`, `bool bold`, `bool italics`, `bool underlined`, `bool inverse`, `bool strikethrough`. The `color` enum includes `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, and `none`. All the classes are in the `ansi` namespace. *Demo code below* - [Screenshot of the output](https://i.sli.mg/K3aGn4.png)
 
-[Screenshot of the output of the following code (Random characters with random colors and styles)](https://i.sli.mg/twpNoU.png)
 ```
 #include <iostream>
 #include "color.hpp"
@@ -55,4 +54,3 @@ int main(){
 	std::cout << my_screen;
 }
 ```
-
