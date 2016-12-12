@@ -55,7 +55,7 @@ for(size_t y = 0; y < height; y++){
 			has_strikethrough
 		);
 
-    		// Set the character on the screen at (x, y) to the random character
+		// Set the character on the screen at (x, y) to the random character
 		my_screen.at(x, y) = my_character;
 	}
 }
